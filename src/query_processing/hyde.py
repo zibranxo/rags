@@ -1,8 +1,8 @@
 from src.generation.llm_client import LLMClient
-from src.utils.logger import get_logger
+from src.utils.logger import setup_logger
 from src.generation.prompt_templates import HYDE_SYSTEM_PROMPT
 
-logger = get_logger(__name__)
+logger = setup_logger(__name__)
 
 def generate_hyde_passage(query: str, llm: LLMClient) -> str:
     """Generate a hypothetical passage that answers the query. Returns empty string on failure."""

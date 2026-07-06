@@ -1,9 +1,9 @@
 import re
 from src.generation.llm_client import LLMClient
-from src.utils.logger import get_logger
+from src.utils.logger import setup_logger
 from src.generation.prompt_templates import DECOMPOSITION_SYSTEM_PROMPT
 
-logger = get_logger(__name__)
+logger = setup_logger(__name__)
 
 def is_multi_hop(query: str) -> bool:
     """Heuristic logic for multi-hop detection."""

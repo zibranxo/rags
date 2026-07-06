@@ -52,7 +52,7 @@ def main():
     for q, expected in test_queries:
         predicted = is_multi_hop(q)
         
-        status = "✅" if predicted == expected else "❌"
+        status = "PASS" if predicted == expected else "FAIL"
         label_str = "Multi" if expected else "Single"
         pred_str = "Multi" if predicted else "Single"
         

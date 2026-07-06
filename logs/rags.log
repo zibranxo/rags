@@ -90,3 +90,9 @@
 2026-07-07 02:52:04,185 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
 2026-07-07 02:52:04,188 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
 2026-07-07 02:52:04,661 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 03:18:51,647 | INFO    | rags.pipeline | No existing corpus found, downloading from arXiv...
+2026-07-07 03:18:51,648 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 03:19:04,336 | INFO    | rags.ingestion.loader |   NLP: 80 found, 80 new (total: 80)
+2026-07-07 03:19:04,336 | INFO    | rags.ingestion.loader | Searching arXiv for CV: cat:cs.CV
+2026-07-07 03:19:16,952 | INFO    | rags.ingestion.loader |   CV: 80 found, 78 new (total: 158)
+2026-07-07 03:19:16,952 | INFO    | rags.ingestion.loader | Searching arXiv for RL: cat:cs.AI AND all:"reinforcement learning"

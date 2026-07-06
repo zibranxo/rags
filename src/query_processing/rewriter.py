@@ -1,8 +1,8 @@
 from src.generation.llm_client import LLMClient
-from src.utils.logger import get_logger
+from src.utils.logger import setup_logger
 from src.generation.prompt_templates import REWRITER_SYSTEM_PROMPT, build_rewriter_user_prompt
 
-logger = get_logger(__name__)
+logger = setup_logger(__name__)
 
 def rewrite_query(query: str, history: list[dict], llm: LLMClient) -> str:
     """Rewrite a query using conversation history to resolve contextual references. 
