@@ -28,6 +28,7 @@ class RAGPipeline:
     use_reranker: bool = False
     use_crag: bool = False
     use_query_rewrite: bool = False
+    use_decomposition: bool = False
     llm_provider: str = "nim"
     llm_model: Optional[str] = None
     use_semantic_chunking: bool = True  # Phase 1 default
@@ -134,18 +135,42 @@ class RAGPipeline:
         from src.ingestion.chunker import _get_tokenizer
         return _get_tokenizer()
 
-    def query(self, question: str) -> QueryResponse:
+    def query(self, question: str, history: list[dict] = None) -> QueryResponse:
         """
         Phase 1 path: hybrid retrieval with RRF fusion, hierarchical expansion.
+        Phase 3 path: Rewriter -> Decomposition -> HyDE
         """
         if not self.collection:
             raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
 
         query_start = time.time()
 
-        # Embed query
+        # --- Phase 3: Query Processing ---
+        active_query = question
+        pipeline_context = {}
+        
+        if self.use_query_rewrite and history:
+            from src.query_processing.rewriter import rewrite_query
+            active_query = rewrite_query(question, history, self.llm_client)
+            pipeline_context['rewritten_query'] = active_query
+            
+        sub_queries = []
+        if self.use_decomposition:
+            from src.query_processing.decomposition import is_multi_hop, decompose_query
+            if is_multi_hop(active_query):
+                sub_queries = decompose_query(active_query, self.llm_client)
+                pipeline_context['sub_queries'] = sub_queries
+                
+        hyde_passage = ""
+        if self.use_hyde:
+            from src.query_processing.hyde import generate_hyde_passage
+            hyde_passage = generate_hyde_passage(active_query, self.llm_client)
+            pipeline_context['hyde_passage'] = hyde_passage
+
+        # --- Phase 1: Hybrid Retrieval ---
+        # Embed query (augmented queries will be wired fully in Phase 4)
         from src.ingestion.embedder import embed_single
-        query_embedding = embed_single(question)
+        query_embedding = embed_single(active_query)
 
         # Hybrid retrieval with RRF fusion
         hits = query_index(
@@ -153,7 +178,7 @@ class RAGPipeline:
             bm25=self.bm25_index,
             bm25_id_map=self.bm25_id_map,
             query_embedding=query_embedding,
-            query_text=question,
+            query_text=active_query,
             candidate_k=20,
             fused_top_n=5,
         )
@@ -162,7 +187,8 @@ class RAGPipeline:
         logger.info(f"Query executed in {query_time:.3f}s")
 
         # Generate answer
-        response = self.generator.generate(question, hits)
+        response = self.generator.generate(active_query, hits)
+        response.pipeline_context = pipeline_context
 
         return response
 

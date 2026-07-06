@@ -17,6 +17,7 @@ class QueryResponse:
     sources: list[dict]
     confidence_flag: str  # "sufficient" | "insufficient_context"
     llm_response: LLMResponse | None = None
+    pipeline_context: dict = field(default_factory=dict)
 
     def format_with_sources(self) -> str:
         out = self.answer

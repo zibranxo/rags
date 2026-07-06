@@ -29,3 +29,21 @@ def build_user_prompt(query: str, hits: list[dict]) -> str:
 Question: {query}
 
 Answer with inline chunk-id citations as described in the system instructions."""
+    
+# Phase 3: Query Processing Prompts
+
+DECOMPOSITION_SYSTEM_PROMPT = """You are an expert AI assistant. Break down the following complex user query into 2 to 4 simpler, standalone sub-queries that must be answered to fully address the original query.
+Output ONLY the sub-queries, one per line. Do not include bullet points, numbering, or conversational filler."""
+
+HYDE_SYSTEM_PROMPT = """Please write a detailed, factual, hypothetical passage that directly answers the following question. Write it in the exact tone, length, and style of an academic paper. Do not include any introductory filler or state that this is hypothetical."""
+
+REWRITER_SYSTEM_PROMPT = """Given the following conversation history and the latest user query, rewrite the user query to be completely self-contained and explicit, resolving any pronouns or contextual references.
+If the query is already standalone, return it exactly as is without any additions.
+Output ONLY the rewritten query, nothing else."""
+
+def build_rewriter_user_prompt(history: list[dict], query: str) -> str:
+    history_lines = []
+    for turn in history:
+        history_lines.append(f"{turn['role'].capitalize()}: {turn['content']}")
+    history_text = "\n".join(history_lines)
+    return f"History:\n{history_text}\n\nLatest Query: {query}"
