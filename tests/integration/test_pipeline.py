@@ -28,12 +28,11 @@ def test_pipeline_ingest(mock_build_index, mock_embed, mock_extract, mock_path, 
     mock_path.return_value = mock_path_instance
     
     # Mock reading metadata.jsonl
-    from io import StringIO
     import json
-    mock_file = MagicMock()
-    mock_file.__enter__.return_value = [json.dumps(m) for m in mock_metadata]
+    from unittest.mock import mock_open
     
-    with patch("builtins.open", return_value=mock_file):
+    mock_data = "".join(json.dumps(m) + "\n" for m in mock_metadata)
+    with patch("builtins.open", mock_open(read_data=mock_data)):
         mock_extract.return_value = mock_extract_result
         mock_embed.return_value = [[0.1] * 1024]
         

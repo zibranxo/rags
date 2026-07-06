@@ -153,7 +153,7 @@ def build_index(
             'page_num': c['page_num'],
             'section_title': c.get('section_title', ''),
             'topic': c.get('topic', ''),
-            'parent_id': c.get('parent_id', None),
+            'parent_id': c.get('parent_id', ''),
             'is_parent': c.get('is_parent', False),
         }
         for c in all_chunks
@@ -227,7 +227,7 @@ def query_index(
 
     # RRF fusion
     rrf_scores = {}
-    for i, (chunk_id, score) in enumerate(dense_results['ids'][0]):
+    for i, chunk_id in enumerate(dense_results['ids'][0]):
         distance = dense_results['distances'][0][i]
         similarity = 1.0 - distance
         rrf_scores[chunk_id] = similarity
