@@ -27,29 +27,43 @@ def test_pipeline_ingest(mock_build_index, mock_embed, mock_extract, mock_path, 
     mock_path_instance.exists.return_value = True
     mock_path.return_value = mock_path_instance
     
-    # Mock reading metadata.jsonl
     import json
-    from unittest.mock import mock_open
     
-    mock_data = "".join(json.dumps(m) + "\n" for m in mock_metadata)
-    with patch("builtins.open", mock_open(read_data=mock_data)):
-        mock_extract.return_value = mock_extract_result
-        mock_embed.return_value = [[0.1] * 1024]
+    # Create real files in a temp directory
+    data_dir = tmp_path / "data"
+    data_dir.mkdir()
+    metadata_path = data_dir / "metadata.jsonl"
+    with open(metadata_path, "w") as f:
+        for m in mock_metadata:
+            f.write(json.dumps(m) + "\n")
+            
+    # Mock Path to return our temp path for metadata
+    def mock_path_side_effect(*args, **kwargs):
+        if str(args[0]) == "data/metadata.jsonl":
+            return metadata_path
+        elif str(args[0]) == "data/pdfs":
+            return tmp_path
+        return MagicMock()
         
-        mock_build_index.return_value = {
-            'collection': MagicMock(),
-            'bm25': MagicMock(),
-            'bm25_id_map': ['1234.5678_c00000']
-        }
-        
-        pipeline = RAGPipeline()
-        # Ensure it works with fixed chunking first (Naive path)
-        pipeline.use_semantic_chunking = False
-        pipeline.ingest(pdf_dir=str(tmp_path))
-        
-        assert len(pipeline.chunks) > 0
-        assert pipeline.chunks[0]['paper_id'] == "1234.5678"
-        assert pipeline.index_stats['chunk_count'] > 0
+    mock_path.side_effect = mock_path_side_effect
+    
+    mock_extract.return_value = mock_extract_result
+    mock_embed.return_value = [[0.1] * 1024]
+    
+    mock_build_index.return_value = {
+        'collection': MagicMock(),
+        'bm25': MagicMock(),
+        'bm25_id_map': ['1234.5678_c00000']
+    }
+    
+    pipeline = RAGPipeline()
+    # Ensure it works with fixed chunking first (Naive path)
+    pipeline.use_semantic_chunking = False
+    pipeline.ingest(pdf_dir=str(tmp_path))
+    
+    assert len(pipeline.chunks) > 0
+    assert pipeline.chunks[0]['paper_id'] == "1234.5678"
+    assert pipeline.index_stats['chunk_count'] > 0
 
 @patch("src.pipeline.query_index")
 @patch("src.ingestion.embedder.embed_single")

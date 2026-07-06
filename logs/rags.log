@@ -7,3 +7,9 @@
 2026-07-07 01:42:38,225 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
 2026-07-07 01:42:38,226 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
 2026-07-07 01:42:38,747 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 01:45:00,038 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 01:45:00,038 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 01:45:00,043 | INFO    | rags.pipeline | Query executed in 0.000s
+2026-07-07 01:45:00,099 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 01:45:00,100 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 01:45:00,561 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
