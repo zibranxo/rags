@@ -191,7 +191,9 @@ def query_index(
     bm25_id_map: List[str],
     query_embedding: np.ndarray,
     query_text: str,
-    top_k: int = 5,
+    candidate_k: int = 20,
+    fused_top_n: int = 15,
+    rrf_k: int = 60,
 ) -> List[Dict]:
     """
     Hybrid retrieval with RRF fusion.
@@ -202,53 +204,67 @@ def query_index(
         bm25_id_map: Mapping of BM25 doc indices to chunk IDs
         query_embedding: Dense query embedding
         query_text: Raw query text for BM25
-        top_k: Number of results to return
+        candidate_k: Number of candidates to retrieve from each modality
+        fused_top_n: Number of final fused results to return
+        rrf_k: RRF smoothing constant
 
     Returns:
         List of retrieved chunks with scores and metadata
     """
-    # Dense retrieval
+    # 1. Dense retrieval (Chroma returns pre-sorted by distance ascending)
     dense_results = collection.query(
         query_embeddings=[query_embedding.tolist()],
-        n_results=top_k,
+        n_results=candidate_k,
         include=["documents", "metadatas", "distances"],
     )
+    
+    dense_rank = {chunk_id: rank + 1 for rank, chunk_id in enumerate(dense_results['ids'][0])}
 
-    # BM25 retrieval
+    # 2. Sparse (BM25) retrieval
     tokenized_query = tokenize(query_text)
     bm25_scores = bm25.get_scores(tokenized_query)
     bm25_ranked = sorted(
-        [(i, score) for i, score in enumerate(bm25_scores)],
+        [(i, score) for i, score in enumerate(bm25_scores) if score > 0],
         key=lambda x: -x[1]
     )
-    bm25_results = {
-        bm25_id_map[i]: score for i, score in bm25_ranked[:top_k]
-    }
+    
+    sparse_rank = {}
+    for rank, (i, score) in enumerate(bm25_ranked[:candidate_k]):
+        sparse_rank[bm25_id_map[i]] = rank + 1
 
-    # RRF fusion
+    # 3. RRF fusion
     rrf_scores = {}
-    for i, chunk_id in enumerate(dense_results['ids'][0]):
-        distance = dense_results['distances'][0][i]
-        similarity = 1.0 - distance
-        rrf_scores[chunk_id] = similarity
+    candidate_ids = set(dense_rank.keys()).union(set(sparse_rank.keys()))
 
-    for chunk_id, score in bm25_results.items():
-        rrf_scores[chunk_id] = rrf_scores.get(chunk_id, 0) + score
+    for chunk_id in candidate_ids:
+        score = 0.0
+        if chunk_id in dense_rank:
+            score += 1.0 / (rrf_k + dense_rank[chunk_id])
+        if chunk_id in sparse_rank:
+            score += 1.0 / (rrf_k + sparse_rank[chunk_id])
+        rrf_scores[chunk_id] = score
 
-    # Get full metadata for all candidates
-    candidate_ids = list(rrf_scores.keys())
-    if not candidate_ids:
+    # 4. Sort and return top N
+    fused_sorted_ids = sorted(candidate_ids, key=lambda x: -rrf_scores[x])[:fused_top_n]
+    
+    if not fused_sorted_ids:
         return []
 
     # Fetch all candidate metadata
     candidate_docs = collection.get(
-        ids=candidate_ids,
+        ids=fused_sorted_ids,
         include=["documents", "metadatas"]
     )
+    
+    # Runtime check: ensure all fused_sorted_ids were actually resolved to metadata
+    fetched_ids_set = set(candidate_docs['ids'])
+    missing_ids = set(fused_sorted_ids) - fetched_ids_set
+    if missing_ids:
+        raise RuntimeError(f"Index desync: Fused candidate IDs {missing_ids} not found in Chroma metadata.")
 
     # Prepare results
     results = []
-    for chunk_id in sorted(rrf_scores.keys(), key=lambda x: -rrf_scores[x])[:top_k]:
+    for chunk_id in fused_sorted_ids:
         idx = candidate_docs['ids'].index(chunk_id)
         meta = candidate_docs['metadatas'][idx] or {}
         results.append({

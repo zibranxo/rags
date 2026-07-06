@@ -13,3 +13,56 @@
 2026-07-07 01:45:00,099 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
 2026-07-07 01:45:00,100 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
 2026-07-07 01:45:00,561 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 02:13:38,905 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 02:13:38,906 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 02:13:38,911 | INFO    | rags.pipeline | Query executed in 0.000s
+2026-07-07 02:13:38,978 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 02:13:38,982 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 02:13:39,520 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 02:16:05,226 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 02:16:05,227 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 02:16:05,231 | INFO    | rags.pipeline | Query executed in 0.000s
+2026-07-07 02:16:05,285 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 02:16:05,286 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 02:16:05,748 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 02:21:28,309 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 02:21:28,310 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 02:21:28,314 | INFO    | rags.pipeline | Query executed in 0.000s
+2026-07-07 02:21:28,388 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 02:21:28,391 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 02:21:28,991 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 02:21:48,967 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 02:32:11,079 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 02:32:11,081 | INFO    | rags.ingestion.loader |   NLP: 2 found, 2 new (total: 2)
+2026-07-07 02:32:11,081 | INFO    | rags.ingestion.loader | Total unique papers to download: 2
+2026-07-07 02:32:12,366 | INFO    | rags.ingestion.loader | Downloaded: 1706.03762
+2026-07-07 02:32:15,348 | INFO    | rags.ingestion.loader | Downloaded: 2005.11401
+2026-07-07 02:32:17,349 | INFO    | rags.ingestion.loader | Downloaded 2 PDFs
+2026-07-07 02:32:18,183 | INFO    | rags.ingestion.loader | Corpus complete: 2 papers, 34 pages, 0 low-conf pages (0.00%), 0 skipped (<1 pages)
+2026-07-07 02:32:18,199 | INFO    | rags.pipeline | No existing corpus found, downloading from arXiv...
+2026-07-07 02:32:18,200 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 02:32:18,200 | INFO    | rags.ingestion.loader |   NLP: 2 found, 2 new (total: 2)
+2026-07-07 02:32:18,200 | INFO    | rags.ingestion.loader | Total unique papers to download: 2
+2026-07-07 02:32:19,382 | INFO    | rags.ingestion.loader | Downloaded: 1706.03762
+2026-07-07 02:32:22,301 | INFO    | rags.ingestion.loader | Downloaded: 2005.11401
+2026-07-07 02:32:24,301 | INFO    | rags.ingestion.loader | Downloaded 2 PDFs
+2026-07-07 02:32:25,062 | INFO    | rags.ingestion.loader | Corpus complete: 2 papers, 34 pages, 0 low-conf pages (0.00%), 0 skipped (<15 pages)
+2026-07-07 02:32:26,100 | INFO    | rags.pipeline | Embedding 139 chunks...
+2026-07-07 02:32:26,101 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 02:38:40,547 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 02:44:53,892 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 02:44:53,893 | INFO    | rags.ingestion.loader |   NLP: 2 found, 2 new (total: 2)
+2026-07-07 02:44:53,893 | INFO    | rags.ingestion.loader | Total unique papers to download: 2
+2026-07-07 02:44:55,203 | INFO    | rags.ingestion.loader | Downloaded: 1706.03762
+2026-07-07 02:44:58,245 | INFO    | rags.ingestion.loader | Downloaded: 2005.11401
+2026-07-07 02:45:00,248 | INFO    | rags.ingestion.loader | Downloaded 2 PDFs
+2026-07-07 02:45:00,989 | INFO    | rags.ingestion.loader | Corpus complete: 2 papers, 34 pages, 0 low-conf pages (0.00%), 0 skipped (<1 pages)
+2026-07-07 02:45:01,008 | INFO    | rags.pipeline | No existing corpus found, downloading from arXiv...
+2026-07-07 02:45:01,012 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 02:45:01,012 | INFO    | rags.ingestion.loader |   NLP: 2 found, 2 new (total: 2)
+2026-07-07 02:45:01,012 | INFO    | rags.ingestion.loader | Total unique papers to download: 2
+2026-07-07 02:45:01,012 | INFO    | rags.ingestion.loader | Downloaded 2 PDFs
+2026-07-07 02:45:01,758 | INFO    | rags.ingestion.loader | Corpus complete: 2 papers, 34 pages, 0 low-conf pages (0.00%), 0 skipped (<15 pages)
+2026-07-07 02:45:02,686 | INFO    | rags.pipeline | Embedding 139 chunks...
+2026-07-07 02:45:02,686 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 02:45:13,674 | INFO    | rags.ingestion.embedder | Model loaded

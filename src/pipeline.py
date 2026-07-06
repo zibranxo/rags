@@ -154,7 +154,8 @@ class RAGPipeline:
             bm25_id_map=self.bm25_id_map,
             query_embedding=query_embedding,
             query_text=question,
-            top_k=5,
+            candidate_k=20,
+            fused_top_n=5,
         )
 
         query_time = time.time() - query_start
