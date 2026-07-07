@@ -189,8 +189,23 @@ class RAGPipeline:
             query_embeddings=list(query_embeddings_arr),
             query_texts=query_texts,
             candidate_k=20,
-            fused_top_n=5,
+            fused_top_n=15 if self.use_reranker else 5,
         )
+
+        # --- Phase 4: Reranking, MMR, Compression ---
+        if self.use_reranker:
+            from src.retrieval.reranker import rerank
+            from src.retrieval.mmr import apply_mmr
+            from src.retrieval.compression import compress_chunks
+
+            # 1. Rerank top-15 -> top-8
+            hits = rerank(active_query, hits, top_k=8)
+            
+            # 2. MMR top-8 -> top-5
+            hits = apply_mmr(hits, lambda_mult=0.7, top_k=5)
+            
+            # 3. Contextual Compression (sentence-level filter)
+            hits = compress_chunks(active_query, hits, threshold=0.5, min_sentences=1)
 
         query_time = time.time() - query_start
         logger.info(f"Query executed in {query_time:.3f}s")

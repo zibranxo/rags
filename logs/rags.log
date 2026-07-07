@@ -197,3 +197,300 @@
 2026-07-07 12:11:49,869 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
 2026-07-07 12:11:49,874 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
 2026-07-07 12:11:50,573 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 12:22:36,410 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 12:22:36,412 | INFO    | rags.eval.phase4 | Ingesting mock pdfs...
+2026-07-07 12:22:36,413 | INFO    | rags.pipeline | No existing corpus found, downloading from arXiv...
+2026-07-07 12:22:36,413 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 12:22:36,700 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 12:22:36,701 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 12:22:36,704 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 12:22:48,061 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 12:22:49,085 | INFO    | rags.ingestion.loader |   NLP: 80 found, 80 new (total: 80)
+2026-07-07 12:22:49,085 | INFO    | rags.ingestion.loader | Searching arXiv for CV: cat:cs.CV
+2026-07-07 12:22:49,618 | INFO    | rags.pipeline | Query executed in 12.913s
+2026-07-07 12:22:49,730 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 12:22:49,731 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 12:22:50,433 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 13:21:28,575 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:22:30,221 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:22:30,661 | INFO    | rags.eval.phase4 | Ingesting mock pdfs...
+2026-07-07 13:22:30,714 | INFO    | rags.ingestion.chunker | Paper mock_1: Created 0 semantic chunks
+2026-07-07 13:22:30,728 | INFO    | rags.ingestion.chunker | Paper mock_2: Created 0 semantic chunks
+2026-07-07 13:22:30,729 | ERROR   | rags.pipeline | No chunks to index
+2026-07-07 13:22:30,729 | INFO    | rags.eval.phase4 | Running 5 queries through Phase 4 pipeline...
+2026-07-07 13:22:30,729 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:22:30,730 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:22:30,731 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:22:30,731 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:22:30,732 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:28:30,212 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:28:30,661 | INFO    | rags.eval.phase4 | Ingesting mock pdfs...
+2026-07-07 13:28:30,707 | ERROR   | rags.pipeline | No chunks to index
+2026-07-07 13:28:30,707 | INFO    | rags.eval.phase4 | Running 5 queries through Phase 4 pipeline...
+2026-07-07 13:28:30,709 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 95, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:28:30,711 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 95, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:28:30,711 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 95, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:28:30,712 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 95, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:28:30,712 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 95, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:30:10,962 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:30:11,372 | INFO    | rags.eval.phase4 | Ingesting mock pdfs...
+2026-07-07 13:30:11,373 | INFO    | rags.pipeline | No existing corpus found, downloading from arXiv...
+2026-07-07 13:30:11,373 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 13:31:19,080 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:31:19,493 | INFO    | rags.eval.phase4 | Ingesting mock pdfs...
+2026-07-07 13:31:19,495 | ERROR   | rags.pipeline | No chunks to index
+2026-07-07 13:31:19,495 | INFO    | rags.eval.phase4 | Running 5 queries through Phase 4 pipeline...
+2026-07-07 13:31:19,495 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:31:19,496 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:31:19,496 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:31:19,497 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:31:19,498 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 94, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:34:58,101 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:34:58,514 | INFO    | rags.eval.phase4 | Mock metadata path: C:\Users\thear\AppData\Local\Temp\tmpru_dvpp9\metadata.jsonl
+2026-07-07 13:34:58,515 | INFO    | rags.eval.phase4 | Mock metadata content: 
+2026-07-07 13:34:58,515 | INFO    | rags.eval.phase4 | Mock PDF dir: C:\Users\thear\AppData\Local\Temp\tmpru_dvpp9\pdfs
+2026-07-07 13:34:58,515 | INFO    | rags.eval.phase4 | Mock PDF files: ['mock_1.pdf', 'mock_2.pdf']
+2026-07-07 13:34:58,516 | INFO    | rags.eval.phase4 | Ingesting mock pdfs...
+2026-07-07 13:34:58,517 | ERROR   | rags.pipeline | No chunks to index
+2026-07-07 13:34:58,517 | INFO    | rags.eval.phase4 | Chunks generated: 0
+2026-07-07 13:34:58,517 | INFO    | rags.eval.phase4 | Running 5 queries through Phase 4 pipeline...
+2026-07-07 13:34:58,517 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 102, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:34:58,518 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 102, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:34:58,519 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 102, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:34:58,520 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 102, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:34:58,520 | ERROR   | rags.eval.phase4 | Error querying: Pipeline not ingested. Call .ingest() first.
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 102, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 144, in query
+    raise RuntimeError("Pipeline not ingested. Call .ingest() first.")
+RuntimeError: Pipeline not ingested. Call .ingest() first.
+2026-07-07 13:45:59,265 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:45:59,267 | INFO    | rags.eval.phase4 | Ingesting real PDFs from data/pdfs...
+2026-07-07 13:46:00,397 | INFO    | rags.pipeline | Embedding 139 chunks...
+2026-07-07 13:46:00,398 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 13:46:12,754 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 13:58:18,159 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:58:18,161 | INFO    | rags.eval.phase4 | Ingesting real PDFs from data/pdfs...
+2026-07-07 13:59:05,064 | INFO    | rags.eval.phase4 | Initializing RAGPipeline with Phase 4 components enabled...
+2026-07-07 13:59:05,067 | INFO    | rags.eval.phase4 | Ingesting real PDFs from data/pdfs...
+2026-07-07 13:59:06,048 | INFO    | rags.pipeline | Embedding 139 chunks...
+2026-07-07 13:59:06,048 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 13:59:17,012 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 14:00:51,186 | INFO    | rags.ingestion.indexer | Index built: 167 chunks (including 28 parents)
+2026-07-07 14:00:51,234 | INFO    | rags.pipeline | Index ready: 139 chunks, avg size 253.8 tokens, built in 1.80s
+2026-07-07 14:00:51,234 | INFO    | rags.eval.phase4 | Running 4 queries through Phase 4 pipeline...
+2026-07-07 14:00:51,442 | ERROR   | rags.eval.phase4 | Error querying: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 58, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 185, in query
+    hits = query_index(
+           ^^^^^^^^^^^^
+  File "C:\code\rags\src\ingestion\indexer.py", line 225, in query_index
+    dense_results = collection.query(
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\Collection.py", line 184, in query
+    ) = self._validate_and_prepare_query_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\CollectionCommon.py", line 389, in _validate_and_prepare_query_request
+    valid_include = validate_include(include, allow_distances=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\types.py", line 477, in validate_include
+    raise ValueError(
+ValueError: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+2026-07-07 14:00:51,677 | ERROR   | rags.eval.phase4 | Error querying: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 58, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 185, in query
+    hits = query_index(
+           ^^^^^^^^^^^^
+  File "C:\code\rags\src\ingestion\indexer.py", line 225, in query_index
+    dense_results = collection.query(
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\Collection.py", line 184, in query
+    ) = self._validate_and_prepare_query_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\CollectionCommon.py", line 389, in _validate_and_prepare_query_request
+    valid_include = validate_include(include, allow_distances=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\types.py", line 477, in validate_include
+    raise ValueError(
+ValueError: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+2026-07-07 14:00:51,836 | ERROR   | rags.eval.phase4 | Error querying: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 58, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 185, in query
+    hits = query_index(
+           ^^^^^^^^^^^^
+  File "C:\code\rags\src\ingestion\indexer.py", line 225, in query_index
+    dense_results = collection.query(
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\Collection.py", line 184, in query
+    ) = self._validate_and_prepare_query_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\CollectionCommon.py", line 389, in _validate_and_prepare_query_request
+    valid_include = validate_include(include, allow_distances=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\types.py", line 477, in validate_include
+    raise ValueError(
+ValueError: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+2026-07-07 14:00:52,004 | ERROR   | rags.eval.phase4 | Error querying: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+Traceback (most recent call last):
+  File "C:\code\rags\eval\test_phase4.py", line 58, in main
+    resp = pipeline.query(q)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\code\rags\src\pipeline.py", line 185, in query
+    hits = query_index(
+           ^^^^^^^^^^^^
+  File "C:\code\rags\src\ingestion\indexer.py", line 225, in query_index
+    dense_results = collection.query(
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\Collection.py", line 184, in query
+    ) = self._validate_and_prepare_query_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\models\CollectionCommon.py", line 389, in _validate_and_prepare_query_request
+    valid_include = validate_include(include, allow_distances=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\types.py", line 477, in validate_include
+    raise ValueError(
+ValueError: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids

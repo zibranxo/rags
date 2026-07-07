@@ -225,7 +225,7 @@ def query_index(
         dense_results = collection.query(
             query_embeddings=[q_emb.tolist()],
             n_results=candidate_k,
-            include=["ids"],
+            include=[]
         )
         for rank, chunk_id in enumerate(dense_results['ids'][0]):
             rrf_scores[chunk_id] = rrf_scores.get(chunk_id, 0.0) + 1.0 / (rrf_k + rank + 1)
@@ -253,7 +253,7 @@ def query_index(
     # Fetch all candidate metadata
     candidate_docs = collection.get(
         ids=fused_sorted_ids,
-        include=["documents", "metadatas"]
+        include=["documents", "metadatas", "embeddings"]
     )
     
     # Runtime check: ensure all fused_sorted_ids were actually resolved to metadata
@@ -277,6 +277,7 @@ def query_index(
             'parent_id': meta.get('parent_id', None),
             'is_parent': meta.get('is_parent', False),
             'score': round(rrf_scores[chunk_id], 4),
+            'embedding': candidate_docs['embeddings'][idx] if candidate_docs.get('embeddings') else None
         })
 
     return results
