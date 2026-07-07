@@ -96,3 +96,96 @@
 2026-07-07 03:19:04,336 | INFO    | rags.ingestion.loader | Searching arXiv for CV: cat:cs.CV
 2026-07-07 03:19:16,952 | INFO    | rags.ingestion.loader |   CV: 80 found, 78 new (total: 158)
 2026-07-07 03:19:16,952 | INFO    | rags.ingestion.loader | Searching arXiv for RL: cat:cs.AI AND all:"reinforcement learning"
+2026-07-07 10:51:40,328 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 10:51:40,329 | INFO    | rags.ingestion.loader |   NLP: 2 found, 2 new (total: 2)
+2026-07-07 10:51:40,329 | INFO    | rags.ingestion.loader | Total unique papers to download: 2
+2026-07-07 10:51:41,456 | INFO    | rags.ingestion.loader | Downloaded: 1706.03762
+2026-07-07 10:51:44,334 | INFO    | rags.ingestion.loader | Downloaded: 2005.11401
+2026-07-07 10:51:46,335 | INFO    | rags.ingestion.loader | Downloaded 2 PDFs
+2026-07-07 10:51:47,194 | INFO    | rags.ingestion.loader | Corpus complete: 2 papers, 34 pages, 0 low-conf pages (0.00%), 0 skipped (<1 pages)
+2026-07-07 10:51:47,210 | INFO    | rags.pipeline | No existing corpus found, downloading from arXiv...
+2026-07-07 10:51:47,211 | INFO    | rags.ingestion.loader | Searching arXiv for NLP: cat:cs.CL
+2026-07-07 10:51:47,211 | INFO    | rags.ingestion.loader |   NLP: 2 found, 2 new (total: 2)
+2026-07-07 10:51:47,212 | INFO    | rags.ingestion.loader | Total unique papers to download: 2
+2026-07-07 10:51:47,212 | INFO    | rags.ingestion.loader | Downloaded 2 PDFs
+2026-07-07 10:51:47,996 | INFO    | rags.ingestion.loader | Corpus complete: 2 papers, 34 pages, 0 low-conf pages (0.00%), 0 skipped (<15 pages)
+2026-07-07 10:51:49,041 | INFO    | rags.pipeline | Embedding 139 chunks...
+2026-07-07 10:51:49,041 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 10:52:00,332 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 10:52:36,764 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: What are its main limitations?
+2026-07-07 10:52:37,531 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: What are its main limitations?
+2026-07-07 10:52:37,531 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: What are its main limitations?
+2026-07-07 10:52:38,369 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: How does it compare to raw score addition?
+2026-07-07 10:52:39,119 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: How does it compare to raw score addition?
+2026-07-07 10:52:39,119 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: How does it compare to raw score addition?
+2026-07-07 10:52:39,938 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Can you elaborate on the second one?
+2026-07-07 10:52:40,825 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Can you elaborate on the second one?
+2026-07-07 10:52:40,825 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Can you elaborate on the second one?
+2026-07-07 10:52:41,781 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Who are the authors of the original Transformer paper?
+2026-07-07 10:52:42,647 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Who are the authors of the original Transformer paper?
+2026-07-07 10:52:42,647 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Who are the authors of the original Transformer paper?
+2026-07-07 10:53:19,338 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:20,283 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:20,283 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:21,102 | WARNING | src.query_processing.decomposition | Decomposition failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:21,921 | WARNING | src.query_processing.decomposition | Decomposition failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:21,921 | WARNING | src.query_processing.decomposition | Decomposition hard failed. Passing through raw query. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:22,652 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:23,386 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:23,386 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 10:53:23,534 | INFO    | rags.pipeline | Query executed in 6.066s
+2026-07-07 10:53:36,764 | INFO    | rags.ingestion.indexer | Index built: 139 chunks (including 0 parents)
+2026-07-07 10:53:36,798 | INFO    | rags.pipeline | Index ready: 139 chunks, avg size 253.8 tokens, built in 0.95s
+2026-07-07 10:53:37,998 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: What is the impact of semantic chunking on retrieval?
+2026-07-07 10:53:38,781 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: What is the impact of semantic chunking on retrieval?
+2026-07-07 10:53:38,781 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: What is the impact of semantic chunking on retrieval?
+2026-07-07 10:53:39,944 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Describe the multi-head attention mechanism.
+2026-07-07 10:53:40,716 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Describe the multi-head attention mechanism.
+2026-07-07 10:53:40,716 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: Describe the multi-head attention mechanism.
+2026-07-07 10:53:41,683 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: How does HyDE improve dense retrieval performance?
+2026-07-07 10:53:42,433 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: How does HyDE improve dense retrieval performance?
+2026-07-07 10:53:42,433 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: How does HyDE improve dense retrieval performance?
+2026-07-07 10:53:43,325 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: What dataset was used for training BERT?
+2026-07-07 10:53:44,142 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: What dataset was used for training BERT?
+2026-07-07 10:53:44,143 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: What dataset was used for training BERT?
+2026-07-07 10:53:45,063 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: What does RAG stand for?
+2026-07-07 10:53:45,779 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: What does RAG stand for?
+2026-07-07 10:53:45,780 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: What does RAG stand for?
+2026-07-07 11:27:57,821 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:27:58,543 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:27:58,543 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:27:59,445 | WARNING | src.query_processing.decomposition | Decomposition failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:00,119 | WARNING | src.query_processing.decomposition | Decomposition failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:00,119 | WARNING | src.query_processing.decomposition | Decomposition hard failed. Passing through raw query. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:00,832 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:01,656 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:01,656 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:01,737 | INFO    | rags.pipeline | Query executed in 5.552s
+2026-07-07 11:28:38,925 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:39,604 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:39,605 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:40,564 | WARNING | src.query_processing.decomposition | Decomposition failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:41,358 | WARNING | src.query_processing.decomposition | Decomposition failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:41,358 | WARNING | src.query_processing.decomposition | Decomposition hard failed. Passing through raw query. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:42,061 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 1/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:42,918 | WARNING | src.query_processing.hyde | HyDE generation failed (attempt 2/2). Error: Header of type `authorization` was missing. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:42,918 | WARNING | src.query_processing.hyde | HyDE hard failed. Passing through empty string. Query: Compare its limitations to standard LLM fine-tuning.
+2026-07-07 11:28:42,983 | INFO    | rags.pipeline | Query executed in 5.711s
+2026-07-07 11:29:07,276 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 11:29:07,276 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 11:29:07,281 | INFO    | rags.pipeline | Query executed in 0.000s
+2026-07-07 11:29:07,353 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 11:29:07,358 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 11:29:08,012 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 12:07:46,749 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: What are its main limitations?
+2026-07-07 12:07:47,467 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: What are its main limitations?
+2026-07-07 12:07:47,467 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: What are its main limitations?
+2026-07-07 12:07:48,184 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: How does it compare to raw score addition?
+2026-07-07 12:07:48,909 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: How does it compare to raw score addition?
+2026-07-07 12:07:48,909 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: How does it compare to raw score addition?
+2026-07-07 12:07:49,598 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Can you elaborate on the second one?
+2026-07-07 12:07:50,333 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Can you elaborate on the second one?
+2026-07-07 12:07:50,334 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Can you elaborate on the second one?
+2026-07-07 12:07:50,970 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Who are the authors of the original Transformer paper?
+2026-07-07 12:07:51,571 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Who are the authors of the original Transformer paper?
+2026-07-07 12:07:51,571 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Who are the authors of the original Transformer paper?
