@@ -189,8 +189,10 @@ def query_index(
     collection: chromadb.Collection,
     bm25: BM25Okapi,
     bm25_id_map: List[str],
-    query_embedding: np.ndarray,
-    query_text: str,
+    query_embedding: Optional[np.ndarray] = None,
+    query_text: Optional[str] = None,
+    query_embeddings: Optional[List[np.ndarray]] = None,
+    query_texts: Optional[List[str]] = None,
     candidate_k: int = 20,
     fused_top_n: int = 15,
     rrf_k: int = 60,
@@ -211,38 +213,36 @@ def query_index(
     Returns:
         List of retrieved chunks with scores and metadata
     """
-    # 1. Dense retrieval (Chroma returns pre-sorted by distance ascending)
-    dense_results = collection.query(
-        query_embeddings=[query_embedding.tolist()],
-        n_results=candidate_k,
-        include=["documents", "metadatas", "distances"],
-    )
-    
-    dense_rank = {chunk_id: rank + 1 for rank, chunk_id in enumerate(dense_results['ids'][0])}
+    if query_embeddings is None:
+        query_embeddings = [query_embedding] if query_embedding is not None else []
+    if query_texts is None:
+        query_texts = [query_text] if query_text is not None else []
+
+    rrf_scores = {}
+
+    # 1. Dense retrieval
+    for q_emb in query_embeddings:
+        dense_results = collection.query(
+            query_embeddings=[q_emb.tolist()],
+            n_results=candidate_k,
+            include=["ids"],
+        )
+        for rank, chunk_id in enumerate(dense_results['ids'][0]):
+            rrf_scores[chunk_id] = rrf_scores.get(chunk_id, 0.0) + 1.0 / (rrf_k + rank + 1)
 
     # 2. Sparse (BM25) retrieval
-    tokenized_query = tokenize(query_text)
-    bm25_scores = bm25.get_scores(tokenized_query)
-    bm25_ranked = sorted(
-        [(i, score) for i, score in enumerate(bm25_scores) if score > 0],
-        key=lambda x: -x[1]
-    )
-    
-    sparse_rank = {}
-    for rank, (i, score) in enumerate(bm25_ranked[:candidate_k]):
-        sparse_rank[bm25_id_map[i]] = rank + 1
+    for q_text in query_texts:
+        tokenized_query = tokenize(q_text)
+        bm25_scores = bm25.get_scores(tokenized_query)
+        bm25_ranked = sorted(
+            [(i, score) for i, score in enumerate(bm25_scores) if score > 0],
+            key=lambda x: -x[1]
+        )
+        for rank, (i, score) in enumerate(bm25_ranked[:candidate_k]):
+            chunk_id = bm25_id_map[i]
+            rrf_scores[chunk_id] = rrf_scores.get(chunk_id, 0.0) + 1.0 / (rrf_k + rank + 1)
 
-    # 3. RRF fusion
-    rrf_scores = {}
-    candidate_ids = set(dense_rank.keys()).union(set(sparse_rank.keys()))
-
-    for chunk_id in candidate_ids:
-        score = 0.0
-        if chunk_id in dense_rank:
-            score += 1.0 / (rrf_k + dense_rank[chunk_id])
-        if chunk_id in sparse_rank:
-            score += 1.0 / (rrf_k + sparse_rank[chunk_id])
-        rrf_scores[chunk_id] = score
+    candidate_ids = set(rrf_scores.keys())
 
     # 4. Sort and return top N
     fused_sorted_ids = sorted(candidate_ids, key=lambda x: -rrf_scores[x])[:fused_top_n]

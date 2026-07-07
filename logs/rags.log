@@ -189,3 +189,11 @@
 2026-07-07 12:07:50,970 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 1/2). Error: Header of type `authorization` was missing. Raw Query: Who are the authors of the original Transformer paper?
 2026-07-07 12:07:51,571 | WARNING | src.query_processing.rewriter | Rewriting failed (attempt 2/2). Error: Header of type `authorization` was missing. Raw Query: Who are the authors of the original Transformer paper?
 2026-07-07 12:07:51,571 | WARNING | src.query_processing.rewriter | Rewriter hard failed. Passing through raw query. Raw Query: Who are the authors of the original Transformer paper?
+2026-07-07 12:11:36,504 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 12:11:36,506 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 12:11:36,510 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 12:11:47,923 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 12:11:49,738 | INFO    | rags.pipeline | Query executed in 13.228s
+2026-07-07 12:11:49,869 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 12:11:49,874 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 12:11:50,573 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)

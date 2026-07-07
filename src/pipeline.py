@@ -167,18 +167,27 @@ class RAGPipeline:
             hyde_passage = generate_hyde_passage(active_query, self.llm_client)
             pipeline_context['hyde_passage'] = hyde_passage
 
-        # --- Phase 1: Hybrid Retrieval ---
-        # Embed query (augmented queries will be wired fully in Phase 4)
-        from src.ingestion.embedder import embed_single
-        query_embedding = embed_single(active_query)
+        # --- Phase 1 & 3: Hybrid Retrieval with Augmented Queries ---
+        query_texts = [active_query]
+        if sub_queries:
+            query_texts.extend(sub_queries)
+            
+        texts_to_embed = [active_query]
+        if sub_queries:
+            texts_to_embed.extend(sub_queries)
+        if hyde_passage:
+            texts_to_embed.append(hyde_passage)
+            
+        from src.ingestion.embedder import embed_texts
+        query_embeddings_arr = embed_texts(texts_to_embed, show_progress=False)
 
-        # Hybrid retrieval with RRF fusion
+        # Hybrid retrieval with RRF fusion across all augmented queries
         hits = query_index(
             collection=self.collection,
             bm25=self.bm25_index,
             bm25_id_map=self.bm25_id_map,
-            query_embedding=query_embedding,
-            query_text=active_query,
+            query_embeddings=list(query_embeddings_arr),
+            query_texts=query_texts,
             candidate_k=20,
             fused_top_n=5,
         )
