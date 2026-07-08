@@ -33,6 +33,7 @@ class RAGPipeline:
     llm_model: Optional[str] = None
     use_semantic_chunking: bool = True  # Phase 1 default
     breakpoint_percentile: float = 95.0
+    crag_model_path: str = "models/crag_evaluator"
 
     def __post_init__(self):
         self.llm_client = LLMClient(provider=self.llm_provider, model=self.llm_model)
@@ -43,6 +44,13 @@ class RAGPipeline:
         self.metadata_entries = []
         self.chunks = []
         self.index_stats = {}
+        
+        # Load CRAG if enabled
+        if self.use_crag:
+            from src.crag.evaluator_model import CRAGEvaluator
+            self.crag_evaluator = CRAGEvaluator(self.crag_model_path)
+        else:
+            self.crag_evaluator = None
 
     def ingest(self, pdf_dir: str = "data/pdfs", rebuild_index: bool = False) -> None:
         """
@@ -206,6 +214,61 @@ class RAGPipeline:
             
             # 3. Contextual Compression (sentence-level filter)
             hits = compress_chunks(active_query, hits, threshold=0.5, min_sentences=1)
+
+        # --- Phase 5: CRAG Evaluator & Fallback ---
+        crag_retry_count = 0
+        crag_label = "Correct"
+        
+        if self.use_crag and self.crag_evaluator and hits:
+            # Evaluate top chunk
+            top_chunk_text = hits[0]['text']
+            crag_label = self.crag_evaluator.evaluate(active_query, top_chunk_text)
+            pipeline_context['crag_initial_label'] = crag_label
+            
+            if crag_label == "Ambiguous":
+                logger.info("CRAG: Ambiguous. Expanding top chunk to parent...")
+                # Expand top chunk to parent
+                parent_chunks = self.expand_chunk(hits[0]['chunk_id'], levels=1)
+                if parent_chunks:
+                    hits[0]['text'] = parent_chunks[0]['text']
+                    pipeline_context['crag_action'] = "expanded_to_parent"
+                crag_retry_count += 1
+                
+            elif crag_label == "Incorrect":
+                logger.info("CRAG: Incorrect. Broadening retrieval once...")
+                # Re-run query_index with candidate_k=40 and fused_top_n=30
+                broad_hits = query_index(
+                    collection=self.collection,
+                    bm25=self.bm25_index,
+                    bm25_id_map=self.bm25_id_map,
+                    query_embeddings=list(query_embeddings_arr),
+                    query_texts=query_texts,
+                    candidate_k=40,
+                    fused_top_n=30 if self.use_reranker else 5,
+                )
+                
+                if self.use_reranker:
+                    broad_hits = rerank(active_query, broad_hits, top_k=10)
+                    broad_hits = apply_mmr(broad_hits, lambda_mult=0.7, top_k=5)
+                    broad_hits = compress_chunks(active_query, broad_hits, threshold=0.5, min_sentences=1)
+                    
+                hits = broad_hits
+                crag_retry_count += 1
+                pipeline_context['crag_action'] = "broadened_retrieval"
+                
+                # Re-evaluate
+                if hits:
+                    new_label = self.crag_evaluator.evaluate(active_query, hits[0]['text'])
+                    pipeline_context['crag_final_label'] = new_label
+                    if new_label == "Incorrect":
+                        logger.warning("CRAG: Still incorrect after broadening. Abstaining.")
+                        # Force abstain
+                        return QueryResponse(
+                            answer="I'm sorry, but I couldn't find sufficient context in the provided documents to answer this question accurately.",
+                            sources=[],
+                            confidence_flag="red",
+                            pipeline_context=pipeline_context
+                        )
 
         query_time = time.time() - query_start
         logger.info(f"Query executed in {query_time:.3f}s")

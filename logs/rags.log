@@ -494,3 +494,15 @@ Traceback (most recent call last):
   File "C:\Users\thear\AppData\Local\Programs\Python\Python311\Lib\site-packages\chromadb\api\types.py", line 477, in validate_include
     raise ValueError(
 ValueError: Expected include item to be one of embeddings, documents, metadatas, uris, data, distances, got ids
+2026-07-07 14:40:11,527 | INFO    | rags.pipeline | Embedding 2 chunks...
+2026-07-07 14:40:11,528 | INFO    | rags.pipeline | Index ready: 2 chunks, avg size 21.0 tokens, built in 0.00s
+2026-07-07 14:40:11,533 | INFO    | rags.ingestion.embedder | Loading BAAI/bge-m3 ...
+2026-07-07 14:40:24,110 | INFO    | rags.ingestion.embedder | Model loaded
+2026-07-07 14:40:25,664 | INFO    | rags.pipeline | Query executed in 14.130s
+2026-07-07 14:40:25,775 | INFO    | rags.ingestion.chunker | Embedding 4 sentences for semantic chunking...
+2026-07-07 14:40:25,775 | INFO    | rags.ingestion.chunker | Found 1 breakpoints at threshold 0.0061 (percentile 50.0)
+2026-07-07 14:40:26,451 | INFO    | rags.ingestion.indexer | Index built: 3 chunks (including 1 parents)
+2026-07-07 19:26:55,402 | WARNING | rags.crag.evaluator | Could not load CRAG model from models/crag_evaluator: models/crag_evaluator is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+2026-07-07 19:26:55,468 | INFO    | rags.pipeline | CRAG: Ambiguous. Expanding top chunk to parent...
+2026-07-07 19:26:55,468 | INFO    | rags.pipeline | Query executed in 0.057s
