@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>🚀 RAGS: Retrieval Augmentation System</h1>
-  <p><i>A State-of-the-Art Hybrid Dense+Sparse RAG Pipeline with Self-Correction, HyDE, and Agentic Workflows</i></p>
+  <h1>🚀 rags: Retrieval Augmentation System</h1>
+  <p><i>A rigorously ablated, hybrid dense+sparse RAG pipeline with self-correction, HyDE, and interactive agentic workflows.</i></p>
 
   [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
   [![ChromaDB](https://img.shields.io/badge/vector%20store-ChromaDB-FF4F00.svg)](https://www.trychroma.com/)
@@ -11,33 +11,41 @@
 
 ---
 
-## 📖 Overview
+## 📖 The "Why" Behind `rags`
 
-**RAGS (Retrieval Augmentation System)** is an advanced, production-ready Retrieval-Augmented Generation (RAG) framework. Designed to address the limitations of naive dense-only retrieval, RAGS implements a **Hybrid Dense+Sparse** pipeline fortified with cutting-edge techniques: **HyDE (Hypothetical Document Embeddings)**, **Query Decomposition**, **Maximal Marginal Relevance (MMR)**, **Reciprocal Rank Fusion (RRF)**, and **Corrective RAG (CRAG)**.
+There's a lot of noise in the RAG space right now. Most tutorials show you how to throw a PDF at a LangChain wrapper, generate embeddings, and call it a day. But if you've ever put a naive RAG system into production, you know the reality: 
+- It hallucinates when the context is missing.
+- It struggles to understand multi-hop questions.
+- It loses track of conversational history. 
+- You end up with a system that works on a toy dataset but fails on edge cases.
 
-This repository serves two primary purposes:
-1. **Rigorous Ablation Testing:** A highly controlled environment to prove the effectiveness of advanced RAG components (HyDE, Reranking, CRAG) against a purpose-built gold set.
-2. **Production-Ready Product:** A fully usable CLI, multi-turn chat interface, and a clean Python API (`RAGPipeline`) ready for integration.
+I built **`rags`** to move past the hype. This isn't just another wrapper. It's a deeply engineered **Hybrid Dense+Sparse RAG framework** designed with two uncompromising goals:
+1. **Unassailable Metrics:** A rigorous ablation framework to statistically prove that advanced components (like HyDE, Reranking, and CRAG) *actually* beat naive RAG against a hard, 250+ question gold-set.
+2. **A Real, Usable Product:** A fully interactive multi-turn CLI, chat interface, and a clean Python API that you can legitimately use and demo today.
+
+We use **one unified pipeline**. Ablations are toggled via runtime flags, not forked code. This keeps our engineering clean and our metrics honest.
 
 ---
 
 ## 🤖 For AI Agents & Code Interpreters
 
-> **System Prompt / Semantic Pointer:** If you are an autonomous agent, LLM, or code assistant analyzing this repository, note that RAGS operates on a strict **single-codebase ablation** rule. Variants (Naive, Partial, Full) are triggered via constructor flags on the `RAGPipeline` class (e.g., `use_hyde=True`, `use_crag=False`), *not* via forked code paths. All prompt templates, LLM client abstractions, and evaluation metrics are isolated in their respective `src/generation` and `eval/` modules. Core architectural decisions are documented in `RAGS_implementation_strategy_v2.md`.
+> **System Pointer:** If you are an autonomous agent or code assistant exploring this repository, please observe our **single-codebase ablation** rule. System variants (Naive, Partial, Full) are triggered exclusively via constructor flags on the `RAGPipeline` class (e.g., `use_hyde=True`). Do not fork logic to test variations. Core architectural decisions and rules are strictly governed by `RAGS_implementation_strategy_v2.md`.
 
 ---
 
-## ✨ Core Features & SEO Keywords
+## ✨ What Makes It Tick?
 
-- **Hybrid Retrieval Strategy:** Combines **ChromaDB** (Dense) and **BM25** (Sparse) over an identical ID space, merged via **RRF (Reciprocal Rank Fusion)**.
-- **Semantic Chunking & Hierarchical Indexing:** Embedding-breakpoint chunking with child-to-parent chunk expansion for granular retrieval and deep context generation.
-- **Advanced Query Processing:**
-  - **HyDE:** Generates hypothetical answers to align query embeddings with document distributions.
-  - **Decomposition:** Automatically detects multi-hop queries and splits them into independent sub-queries.
-  - **Conversational Rewriting:** Resolves context and pronouns in multi-turn chat sessions.
-- **Precision Reranking & Diversity:** Uses `BAAI/bge-reranker-v2-m3` followed by **MMR (Maximal Marginal Relevance)** to ensure top-K results are both highly relevant and non-redundant.
-- **Corrective RAG (CRAG):** A custom-trained 3-class DistilBERT classifier grades retrieved chunks as `Correct`, `Ambiguous`, or `Incorrect`, triggering automatic fallbacks (decomposition retries, context broadening, or explicit abstention).
-- **Post-Hoc Hallucination Filter:** NLI-based (Natural Language Inference) entailment checks on generated sentences against cited chunks.
+We didn't just stack buzzwords; we made specific, intentional engineering tradeoffs:
+
+- **Hybrid Retrieval (Dense + Sparse):** We use `BAAI/bge-m3` for dense embeddings because of its massive 8192-token context window and high retrieval quality, coupled with standard BM25. They share an identical ID space, and we merge their ranked lists using **Reciprocal Rank Fusion (RRF)**.
+- **Smart Semantic Chunking:** Instead of arbitrarily slicing text, we use embedding-breakpoint detection. We also maintain a hierarchical index (child chunks linked to summarized parents) allowing the system to expand from "small-to-big" when more context is needed.
+- **Query Processing that Actually Works:**
+  - **HyDE:** Generates a hypothetical answer first, embedding *that* to bridge the semantic gap between a short query and a long document.
+  - **Decomposition:** A heuristic engine detects multi-hop questions and splits them into independent sub-queries.
+  - **Conversational Rewriting:** Resolves ambiguous pronouns ("What about his second point?") so the retriever doesn't fly blind.
+- **Precision Reranking:** We pass the fused top-15 results through a cross-encoder (`bge-reranker-v2-m3`) and apply **Maximal Marginal Relevance (MMR)** to strip out redundant chunks.
+- **Self-Correction (CRAG):** This is the safety net. A fine-tuned 3-class DistilBERT model evaluates retrieved chunks as `Correct`, `Ambiguous`, or `Incorrect`. If it's ambiguous, we dynamically expand to the parent chunk. If it's incorrect, we broaden the search—or explicitly abstain instead of hallucinating.
+- **Post-Hoc Verification:** Every generated sentence runs through an NLI (Natural Language Inference) model to ensure it is faithfully entailed by the cited chunk.
 
 ---
 
@@ -84,18 +92,18 @@ graph TD
 
 ### 1. Installation
 
-Clone the repository and install the required dependencies:
+Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/yourusername/rags.git
+git clone https://github.com/zibranxo/rags.git
 cd rags
 pip install -r requirements.txt
 ```
 
 ### 2. Configuration
 
-Copy the `.env.example` to `.env` and fill in your API keys (NIM, OpenRouter, etc.). 
-Modify `config/config.yaml` to adjust hyperparameters like `CHILD_CHUNK_SIZE`, `RERANK_TOP_K`, and `MMR_LAMBDA`.
+Copy the `.env.example` to `.env` and fill in your API keys (we support NIM, OpenRouter, and local Ollama deployments).
+Modify `config/config.yaml` if you want to tweak hyperparameters like chunk sizes or the MMR lambda.
 
 ### 3. Usage via CLI
 
@@ -118,18 +126,18 @@ python main.py query "How does semantic chunking work?" --no-hyde --no-crag
 
 ### 4. Python API (`RAGPipeline`)
 
-For programmatic use or embedding in another application:
+If you want to embed `rags` into your own application, the API is intentionally clean and transparent:
 
 ```python
 from src.pipeline import RAGPipeline
 
-# Initialize the pipeline with desired flags
+# Initialize the pipeline with desired components
 pipeline = RAGPipeline(
     llm_provider="nim",       
     use_hyde=True,
     use_reranker=True,
     use_crag=True,
-    use_query_rewrite=True,   # Enable for multi-turn chat
+    use_query_rewrite=True,   # Essential for multi-turn chat
 )
 
 # Ingest documents
@@ -139,22 +147,22 @@ pipeline.ingest("data/pdfs/")
 response = pipeline.query("How does the decomposition heuristic work?")
 print(response.format_with_sources())
 
-# Switch LLM provider mid-session
+# Swap your LLM provider mid-session without losing context
 pipeline.switch_llm("ollama", "llama3.2")
 ```
 
 ---
 
-## 📊 Evaluation & Metrics
+## 📊 Honest Evaluation
 
-RAGS is evaluated against a 250+ question gold set using automated metrics and GPT-4o pairwise judges.
+This system is constantly tested against a rigorous 250+ question gold-set containing single-hop, multi-hop, and deliberately unanswerable questions. We don't guess at numbers. We run full ablations.
 
-Run the ablation suite to generate reproducible metrics:
+Run the ablation suite yourself to see the raw metrics:
 ```bash
 python eval/ablation_runner.py --gold-set eval/gold_set/gold_qa.jsonl
 ```
 
-### Tracked Metrics:
+### What We Track:
 - **Recall@k:** Validates retrieval depth and accuracy.
 - **MRR (Mean Reciprocal Rank):** Measures rank quality of the first correct chunk.
 - **nDCG@10:** Assesses ranking order utility.
@@ -163,20 +171,6 @@ python eval/ablation_runner.py --gold-set eval/gold_set/gold_qa.jsonl
 
 ---
 
-## 🛠️ Technology Stack
-
-| Component | Technology | Rationale |
-| :--- | :--- | :--- |
-| **PDF Parsing** | `PyMuPDF` | Fast, accurate text extraction with `unstructured` fallback. |
-| **Dense Embeddings** | `BAAI/bge-m3` | High retrieval quality, supports 8192-token context. |
-| **Vector Store** | `ChromaDB` | Built-in persistence, lightweight, metadata filtering support. |
-| **Sparse Index** | `rank_bm25` | Independent lexical signal for clean dense/sparse ablation. |
-| **Reranker** | `bge-reranker-v2-m3` | State-of-the-art cross-encoder ranking. |
-| **Self-Correction** | DistilBERT | Custom 3-class CRAG classifier fine-tuned on synthetic labels. |
-| **Orchestration** | Python + `asyncio` | Native integration without LangChain/LlamaIndex bloat for pure ablation transparency. |
-
----
-
 <div align="center">
-  <i>Built with absolute rigor for accuracy, transparency, and state-of-the-art performance.</i>
+  <i>Built with uncompromising rigor for accuracy, transparency, and state-of-the-art performance.</i>
 </div>
