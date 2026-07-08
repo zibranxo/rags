@@ -1,6 +1,9 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
 import json
 import torch
-from pathlib import Path
 from sklearn.model_selection import train_test_split
 from transformers import (
     AutoTokenizer, 

@@ -1,7 +1,10 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
 import json
 import random
 import time
-from pathlib import Path
 
 from src.generation.llm_client import LLMClient
 from src.utils.logger import setup_logger
