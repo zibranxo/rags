@@ -74,7 +74,7 @@ def generate_bootstrap_data(num_chunks: int = 50, out_file: str = "data/crag_boo
                     max_tokens=300
                 )
                 
-                lines = resp.answer.strip().split("\n")
+                lines = resp.text.strip().split("\n")
                 
                 # Parse output
                 for line in lines:
