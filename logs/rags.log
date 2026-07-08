@@ -506,3 +506,55 @@ ValueError: Expected include item to be one of embeddings, documents, metadatas,
 If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
 2026-07-07 19:26:55,468 | INFO    | rags.pipeline | CRAG: Ambiguous. Expanding top chunk to parent...
 2026-07-07 19:26:55,468 | INFO    | rags.pipeline | Query executed in 0.057s
+2026-07-08 22:55:19,476 | INFO    | rags.crag.bootstrap | Bootstrapping 50 chunks -> ~150 training pairs...
+2026-07-08 22:55:21,067 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00021: Header of type `authorization` was missing
+2026-07-08 22:55:21,821 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00049: Header of type `authorization` was missing
+2026-07-08 22:55:22,449 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00074: Header of type `authorization` was missing
+2026-07-08 22:55:23,200 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00028: Header of type `authorization` was missing
+2026-07-08 22:55:23,855 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00038: Header of type `authorization` was missing
+2026-07-08 22:55:24,428 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00027: Header of type `authorization` was missing
+2026-07-08 22:55:25,248 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00055: Header of type `authorization` was missing
+2026-07-08 22:55:26,071 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00015: Header of type `authorization` was missing
+2026-07-08 22:55:26,743 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00076: Header of type `authorization` was missing
+2026-07-08 22:55:27,647 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00030: Header of type `authorization` was missing
+2026-07-08 22:55:28,381 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00013: Header of type `authorization` was missing
+2026-07-08 22:55:28,953 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00036: Header of type `authorization` was missing
+2026-07-08 22:55:29,605 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00073: Header of type `authorization` was missing
+2026-07-08 22:55:30,349 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00009: Header of type `authorization` was missing
+2026-07-08 22:55:31,092 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00017: Header of type `authorization` was missing
+2026-07-08 22:55:31,763 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00003: Header of type `authorization` was missing
+2026-07-08 22:55:32,404 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00047: Header of type `authorization` was missing
+2026-07-08 22:55:33,316 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00043: Header of type `authorization` was missing
+2026-07-08 22:55:33,971 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00023: Header of type `authorization` was missing
+2026-07-08 22:55:34,559 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00005: Header of type `authorization` was missing
+2026-07-08 22:55:35,331 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00032: Header of type `authorization` was missing
+2026-07-08 22:55:36,188 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00020: Header of type `authorization` was missing
+2026-07-08 22:55:36,930 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00022: Header of type `authorization` was missing
+2026-07-08 22:55:37,582 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00002: Header of type `authorization` was missing
+2026-07-08 22:55:38,240 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00085: Header of type `authorization` was missing
+2026-07-08 22:55:39,068 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00062: Header of type `authorization` was missing
+2026-07-08 22:55:39,744 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00046: Header of type `authorization` was missing
+2026-07-08 22:55:40,571 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00075: Header of type `authorization` was missing
+2026-07-08 22:55:41,478 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00008: Header of type `authorization` was missing
+2026-07-08 22:55:42,217 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00014: Header of type `authorization` was missing
+2026-07-08 22:55:42,934 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00019: Header of type `authorization` was missing
+2026-07-08 22:55:43,785 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00009: Header of type `authorization` was missing
+2026-07-08 22:55:44,497 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00056: Header of type `authorization` was missing
+2026-07-08 22:55:45,313 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00065: Header of type `authorization` was missing
+2026-07-08 22:55:46,082 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00037: Header of type `authorization` was missing
+2026-07-08 22:55:46,714 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00083: Header of type `authorization` was missing
+2026-07-08 22:55:47,354 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00003: Header of type `authorization` was missing
+2026-07-08 22:55:47,969 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00081: Header of type `authorization` was missing
+2026-07-08 22:55:48,700 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00044: Header of type `authorization` was missing
+2026-07-08 22:55:49,454 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00030: Header of type `authorization` was missing
+2026-07-08 22:55:50,256 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00045: Header of type `authorization` was missing
+2026-07-08 22:55:51,081 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00053: Header of type `authorization` was missing
+2026-07-08 22:55:51,816 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00058: Header of type `authorization` was missing
+2026-07-08 22:55:52,471 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00038: Header of type `authorization` was missing
+2026-07-08 22:55:53,290 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00013: Header of type `authorization` was missing
+2026-07-08 22:55:54,280 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 1706.03762_c00000: Header of type `authorization` was missing
+2026-07-08 22:55:55,023 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00079: Header of type `authorization` was missing
+2026-07-08 22:55:55,861 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00072: Header of type `authorization` was missing
+2026-07-08 22:55:56,512 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00048: Header of type `authorization` was missing
+2026-07-08 22:55:57,346 | WARNING | rags.crag.bootstrap | Failed to generate queries for chunk 2005.11401_c00052: Header of type `authorization` was missing
+2026-07-08 22:55:57,346 | INFO    | rags.crag.bootstrap | Saved bootstrapped dataset to data\crag_bootstrap.jsonl
